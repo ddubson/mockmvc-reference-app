@@ -1,7 +1,7 @@
 package com.ddubson.api;
 
-import com.google.common.collect.ImmutableMap;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,25 +12,26 @@ import static org.springframework.http.ResponseEntity.ok;
 
 @RestController
 public class BookController {
-	private ImmutableMap<Long, Book> books = ImmutableMap
-			.<Long, Book>builder()
-			.put(1L, new Book(1L, "Encyclopedia"))
-			.put(2L, new Book(2L, "Dictionary")).build();
+	private BookRepository bookRepository;
 
+	public BookController(BookRepository bookRepository) {
+		this.bookRepository = bookRepository;
+	}
 
 	@GetMapping("/books")
 	public ResponseEntity getAllBooks() {
-		return ok(books.values().asList());
+		return ok(bookRepository.getAllBooks());
 	}
 
 	@GetMapping("/books/{id}")
 	public ResponseEntity getBook(@PathVariable Long id) {
-		return ok(books.get(id));
+		return ok(bookRepository.getBookById(id));
 	}
 }
 
 @Data
 @AllArgsConstructor
+@Builder
 class Book {
 	private Long id;
 	private String name;
