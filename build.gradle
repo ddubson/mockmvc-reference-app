@@ -14,7 +14,7 @@ apply plugin: 'io.spring.dependency-management'
 
 dependencies {
     compile "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
-    compile 'org.projectlombok:lombok:1.16.18'
+    compile 'org.projectlombok:lombok:1.16.20'
     compile 'com.google.guava:guava:23.0'
 
     testCompile "org.springframework.boot:spring-boot-starter-test:$springBootVersion"
