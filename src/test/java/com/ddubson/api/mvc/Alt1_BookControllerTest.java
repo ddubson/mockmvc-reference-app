@@ -42,7 +42,8 @@ public class Alt1_BookControllerTest {
 	}
 
 	@Test
-	public void getBook_shouldReturnSingleBook() throws Exception {
+	public void getBook_whenBookExists_shouldReturnSingleBook() throws Exception {
+		when(bookRepository.bookExistsById(1L)).thenReturn(true);
 		when(bookRepository
 				.getBookById(1L))
 				.thenReturn(
@@ -52,5 +53,14 @@ public class Alt1_BookControllerTest {
 				.andExpect(status().isOk())
 				.andExpect(jsonPath("$.id").value("1"))
 				.andExpect(jsonPath("$.name").value("Encyclopedia"));
+	}
+
+	@Test
+	public void getBook_whenBookDoesNotExist_shouldReturnNotFound() throws Exception {
+		when(bookRepository
+				.bookExistsById(99999L))
+				.thenReturn(false);
+		mockMvc.perform(get("/books/99999"))
+				.andExpect(status().isNotFound());
 	}
 }

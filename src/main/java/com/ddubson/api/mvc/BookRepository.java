@@ -19,4 +19,8 @@ public class BookRepository {
 	public Book getBookById(Long id) {
 		return books.get(id);
 	}
+
+	public boolean bookExistsById(Long id) {
+		return books.containsKey(id);
+	}
 }

@@ -42,4 +42,10 @@ public class Alt2_BookControllerTest {
 				.andExpect(jsonPath("$.id").value("1"))
 				.andExpect(jsonPath("$.name").value("Encyclopedia"));
 	}
+
+	@Test
+	public void getBook_whenBookDoesNotExist_shouldReturnNotFound() throws Exception {
+		mockMvc.perform(get("/books/99999"))
+				.andExpect(status().isNotFound());
+	}
 }
