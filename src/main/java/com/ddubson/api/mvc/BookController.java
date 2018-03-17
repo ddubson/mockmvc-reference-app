@@ -1,4 +1,4 @@
-package com.ddubson.api;
+package com.ddubson.api.mvc;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

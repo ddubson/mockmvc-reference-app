@@ -1,4 +1,4 @@
-package com.ddubson.api;
+package com.ddubson.api.mvc;
 
 import com.google.common.collect.ImmutableMap;
 import org.springframework.stereotype.Component;
